@@ -15,6 +15,9 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports: 
     dplyr,
+    fable,
+    fabletools,
+    feasts,
     gtrendsR,
     lubridate,
     magrittr,
@@ -22,4 +25,5 @@ Imports:
     rlang,
     sidrar,
     tidyr,
-    tsibble
+    tsibble,
+    urca
