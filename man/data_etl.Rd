@@ -10,7 +10,7 @@ data_etl(silent = FALSE)
 \item{silent}{Logical}
 }
 \value{
-Tibble
+Data frame
 }
 \description{
 ETL script

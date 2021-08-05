@@ -3,7 +3,7 @@
 #' @param silent Logical
 #' @importFrom rlang .data
 #'
-#' @return Tibble
+#' @return Data frame
 #' @export
 #'
 #' @examples

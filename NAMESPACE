@@ -3,5 +3,6 @@
 export("%>%")
 export(am_message)
 export(data_etl)
+export(data_split)
 importFrom(magrittr,"%>%")
 importFrom(rlang,.data)
