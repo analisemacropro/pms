@@ -38,18 +38,10 @@ model_accuracy <- function(data, silent = FALSE) {
   fit_ar <- data[["fit_ar"]]
   fit_trends <- data[["fit_trends"]]
 
-
-  fit_ar %>%
-    fabletools::accuracy() %>%
-    dplyr::select(RMSE, MAE)
-
-  fit_trends  %>%
-    fabletools::accuracy() %>%
-    dplyr::select(RMSE, MAE)
-
-  teste$ar <- fabletools::fitted(fit_ar)$.fitted
-  teste$trends <- fabletools::fitted(fit_trends)$.fitted
-
+  metrics <- dplyr::bind_rows(
+    fabletools::accuracy(fit_ar),
+    fabletools::accuracy(fit_trends)
+    )
 
   am_message(
     paste0("\nFinishing model accuracy step...\n"),
