@@ -35,6 +35,7 @@ run_model <- function(
   data_forecast <- model_forecast(data_fit, data_samples, silent = silent)
 
   data_ls = list(
+    "data_samples" = data_samples,
     "model_fit" = data_fit,
     "model_accuracy" = data_performance,
     "model_forecast" = data_forecast
