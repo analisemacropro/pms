@@ -3,7 +3,7 @@
 #' @param data Data input
 #' @param silent Logical
 #'
-#' @return List
+#' @return Tibble
 #' @export
 #'
 #' @examples
@@ -11,22 +11,16 @@
 #' silent = FALSE
 #'
 #' # ETL etep
-#' data_download <- retry(data_etl(silent = silent))
-#'
-#' # Stationarity step
-#' data_stationarity <- data_stationarity(data_download, silent = silent)
-#'
-#' # Transform step
-#' data_transformed <- data_transform(data_stationarity, silent = silent)
+#' data_download <- data_etl(silent = silent)
 #'
 #' # Data split step (train and test)
-#' data_list <- data_split(data_transformed, train_end = "2019-01-01", silent = silent)
+#' data_samples <- data_split(data_download, train_end = 2019, silent = silent)
 #'
-#' # Train models and forecast step
-#' data_model <- model_train(data_list, h = 6, silent = silent)
+#' # Fit models
+#' data_fit <- model_fit(data_samples, silent = silent)
 #'
 #' # Model performance step (in sample)
-#' data_performance <- model_accuracy(data_model, silent = silent)
+#' data_performance <- model_accuracy(data_fit, silent = silent)
 #'}
 model_accuracy <- function(data, silent = FALSE) {
 
