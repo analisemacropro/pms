@@ -3,3 +3,6 @@
 ^pms\.Rproj$
 ^\.Rproj\.user$
 ^\.github$
+^README\.Rmd$
+^docs$
+^data$

@@ -1,5 +1,5 @@
 Package: pms
-Title: PMS Automated Forecast Model
+Title: Automated Forecast Model of PMS IBGE
 Version: 0.0.1
 Authors@R: 
     person(given = "Fernando",

@@ -75,4 +75,4 @@ dplyr::glimpse(modelo_pms)
 
 O resultado da função `pms::run_dashboard()` é a visualização abaixo:
 
-![](docs/printscreen.png)
+![](docs/printscreen.PNG)
