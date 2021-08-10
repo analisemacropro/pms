@@ -1,0 +1,171 @@
+---
+title: "Dashboard: Previs\u00e3o da PMS"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: column
+    vertical_layout: fill
+    source_code: NULL
+    logo: https://analisemacro.com.br/wp-content/uploads/2021/07/logo_dash.png
+    social: NULL
+    navbar:
+        - { icon: "fa-home", href: "https://analisemacro.com.br/", align: right }
+        - { icon: "fa-linkedin", href: "https://www.linkedin.com/company/an%C3%A1lise-macro/", align: right }
+        - { icon: "fa-at", href: "mailto:comercial@analisemacro.com.br", align: right }
+---
+
+<!-- Definição de estilos, cores e elementos CSS -->
+
+<script>
+$('.navbar-logo').wrap('<a href="https://analisemacro.com.br/" target=_blank>');
+</script>
+
+<style>                     
+.navbar {
+  background-color:#282f6b;
+}
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+  color: #ffffff;
+    background-color: #ffffff21;
+}
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+  color: #ffffff;
+    background-color: #ffffff21;
+}
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+  background-color: #ffffff21;
+}
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #ffffff21;
+    color: #ffffff;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  text-decoration: none;
+  color: #ffffff;
+    background-color: #282f6b;
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  color: #ffffff;
+    text-decoration: none;
+  outline: 0;
+  background-color: #282f6b;
+}
+.nav-tabs-custom > .nav-tabs > li.active {
+  border-top-color: #282f6b;
+}
+</style> 
+
+
+
+```{r global, include=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_knit$set(progress = TRUE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = FALSE)
+```
+
+
+```{r utils, message=FALSE, warning=FALSE}
+colors <- c(
+  blue   = "#282f6b",
+  red    = "#b22200",
+  yellow = "#eace3f",
+  green  = "#224f20",
+  purple = "#5f487c",
+  orange = "#b35c1e"
+)
+```
+
+
+
+Overview
+=====================================
+
+
+Column
+-------------------------------------
+
+### Previsão {.no-title}
+
+```{r forecast}
+# Histórico e previsão
+highcharter::hchart(
+  tbl_results %>% 
+    dplyr::filter(date >= lubridate::`%m-%`(dplyr::last(date), lubridate::years(5))), 
+  "line", 
+  highcharter::hcaes(x = date, y = value, group = id),
+  color = c(colors[2], colors[1])
+  ) %>% 
+  plot_am(
+    title     = "Previs\u00e3o de Servi\u00e7os (PMS/IBGE)",
+    source    = "analisemacro.com.br",
+    navigator = FALSE,
+    range     = FALSE
+    ) %>%
+  highcharter::hc_yAxis(
+    labels    = list(format = "{value}"),
+    title     = list(text = "N\u00ba \u00edndice s.a.")
+    )
+```
+
+
+Column {data-width=350}
+-------------------------------------
+
+### Forecast points {.no-title data-height=300}
+
+```{r points}
+# Tabela com forecast point
+tbl_results %>% 
+  dplyr::filter(id == "Previs\u00e3o") %>% 
+  dplyr::mutate(date = format(date, "%b/%Y")) %>% 
+  dplyr::select(
+    "M\u00eas"             = date, 
+    "Previs\u00e3o % a.m." = mom,
+    "Previs\u00e3o % a.a." = yoy
+    ) %>% 
+  tidyr::drop_na() %>% 
+  DT::datatable(
+    options = list(rownames = FALSE, dom = "t")
+    ) %>% 
+  DT::formatRound(columns = 2:3, dec.mark = ",")
+
+```
+
+### Performance {.no-title}
+
+```{r perf}
+# Models accuracy results
+error_metric %>% 
+  DT::datatable(
+    options = list(rownames = FALSE, dom = "t")
+    ) %>% 
+  DT::formatRound(columns = 2:3, dec.mark = ",")
+```
+
+
+
+
+Dashboard: Previsão da PMS {.sidebar data-width=350}
+=====================================
+
+#### **Modelo de Previsão da PMS**
+Esta dashboard apresenta os resultados de um modelo de previsão macroeconômico no que tange o **volume do setor de serviços da economia brasileira**, medido pela PMS/IBGE, através de uma estratégia automatizada pela linguagem `R`.
+
+**Sobre o workflow**:
+
+1) Coleta e tratamento de dados<br>
+2) Análise de Componentes Principais (PCA)<br>
+3) Separação de amostras de treino e teste<br>
+4) Modelagem e previsão<br>
+5) Avaliação de acurácia<br>
+6) Visualização de resultados<br>
+
+
+**Última atualização**: `r format(Sys.Date(), "%d de %B de %Y")`.

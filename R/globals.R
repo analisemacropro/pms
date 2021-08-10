@@ -1,4 +1,3 @@
 utils::globalVariables(
-  c("Valor"
-  )
+  c("Valor", "where")
 )

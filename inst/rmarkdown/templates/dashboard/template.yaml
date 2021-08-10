@@ -1,0 +1,4 @@
+name: Dashboard PMS
+description: >
+   Dashboard do modelo de previsão da PMS da Análise Macro
+create_dir: FALSE
