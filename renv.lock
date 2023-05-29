@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.0.3",
+    "Version": "4.1.2",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -151,10 +151,10 @@
     },
     "cli": {
       "Package": "cli",
-      "Version": "3.0.0",
+      "Version": "3.1.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "096829b701eec2d2b4538be63de97e75"
+      "Hash": "66a3834e54593c89d8beefb312347e58"
     },
     "colorspace": {
       "Package": "colorspace",
@@ -326,10 +326,10 @@
     },
     "gtrendsR": {
       "Package": "gtrendsR",
-      "Version": "1.4.8",
+      "Version": "1.5.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "223ecbfe8e700e59080ad07f791a6ce8"
+      "Hash": "b8e07a07c86f956e84ec1ce76bc917ce"
     },
     "highcharter": {
       "Package": "highcharter",
@@ -571,10 +571,10 @@
     },
     "rlang": {
       "Package": "rlang",
-      "Version": "0.4.10",
+      "Version": "1.0.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "599df23c40a4fce9c7b4764f28c37857"
+      "Hash": "04884d9a75d778aca22c7154b8333ec9"
     },
     "rlist": {
       "Package": "rlist",
