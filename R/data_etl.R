@@ -20,11 +20,7 @@ data_etl <- function(silent = FALSE) {
 
   # PMS Volume (Índice base fixa com ajuste sazonal, 2014=100)
   services <- sidrar::get_sidra(
-    6443,
-    period = "all",
-    variable = 8677,
-    classific = c("c11046", "c12355"),
-    category = list(40312, 107071)
+    api = "/t/8688/n1/all/v/7168/p/all/c11046/56726/c12355/107071/d/v7168%205"
     ) %>%
     dplyr::select('M\u00eas (C\u00f3digo)', .data$Valor) %>%
     tidyr::separate('M\u00eas (C\u00f3digo)', into = c("pre", "post"), sep = -2) %>%
